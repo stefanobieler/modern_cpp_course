@@ -5,12 +5,24 @@
 #include "FuncPtrParam.hpp"
 #include <iostream>
 
-const static std::string LIBRARY_NAME {"FuncPtrParam"};
-const static std::string LIBRARY_VERSION {"0.1.0"};
+struct LibraryInfo {
+    std::string name{"FuncPtrParam"};
+    std::string version{"1.1.0.0"};
+};
+
+const static LibraryInfo LIBRARY_INFO{};
+
+static void print_greeting(){
+    std::cout << "-----------------------------------------------------" << std::endl << std::endl;
+    std::cout << LIBRARY_INFO.name << " " << LIBRARY_INFO.version << std::endl;
+    std::cout << "Running internal example...." << std::endl;
+    std::cout << "-----------------------------------------------------" << std::endl << std::endl;
+
+}
 
 StatusType run_example(){
-    std::cout << LIBRARY_NAME << " " << LIBRARY_VERSION << std::endl;
-    std::cout << "Running internal example...." << std::endl;
+
+    print_greeting();
 
     // add two values and return aa sum
     {
@@ -56,25 +68,25 @@ StatusType run_example(){
     return StatusType::SUCCESS;
 }
 
-int add(const int* a, const int* b) {
+int add(const int* const a, const int* const b) {
     if(a == nullptr || b == nullptr)
         return 0;
     return *a + *b;
 }
 
-void addVal(const int* a, const int* b, int* result){
+void addVal(const int* const a, const int* const b, int* result){
     if(a == nullptr || b == nullptr)
         return;
     *result = *a + *b;
 }
 
-void swap(int* a, int* b){
+void swap(int* const a, int* const b){
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void factorial(int* a, unsigned int* result) {
+void factorial(const int* const a, unsigned int* result) {
     *result = 1;
     if (*a < 0){
         std::cout << "Error! Factorial of a negative number doesn't exist.";
@@ -87,5 +99,5 @@ void factorial(int* a, unsigned int* result) {
 }
 
 const std::string& get_version(){
-    return LIBRARY_VERSION;
+    return LIBRARY_INFO.version;
 }

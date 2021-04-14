@@ -8,7 +8,7 @@
 
 #include<string>
 
-enum StatusType {
+enum class StatusType {
     SUCCESS,
     FAILED
 };
@@ -26,7 +26,6 @@ StatusType run_example();
 /// \param b pointer to an int reference
 /// \return sum of the values stored in a and b together.
 int add(const int* a, const int* b);
-
 
 /// Add the value of a and b together and store the sum in the result
 ///
@@ -46,7 +45,7 @@ void swap(int* a, int* b);
 /// Generate the factorial of a number and return that through the second pointer argument
 /// \param a pointer to an int reference
 /// \param result pointer to the factorial result
-void factorial(int* a, unsigned int* result);
+void factorial(const int* a, unsigned int* result);
 
 /// Get library version
 ///

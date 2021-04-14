@@ -1,10 +1,19 @@
 #include "Main.hpp"
-#include "FuncPtrParam.hpp"
+#include "StringLib.hpp"
 
 int main() {
 
     print_greeting();
-    run_example();
+    StatusType result = run_example();
+
+    if (result == StatusType::FAILED) {
+        std::cout << "The example failed..." << std::endl;
+        exit(1);
+    }
+
+    if (result == StatusType::SUCCESS) {
+        std::cout << "Test ran successful" << std::endl;
+    }
 
     return 0;
 }
